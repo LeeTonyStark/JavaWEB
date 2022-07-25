@@ -3,6 +3,8 @@ package com.lifeng.java.fiveinarow;
 import javafx.application.Application;
 import javafx.event.EventHandler;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
@@ -23,9 +25,9 @@ public class MyApplication extends Application {
     //把一些字面量抽取出来
     private double margin = 30.0;//外边距
     private double size = 30.0;//每个格子的大小
-    private double allSize = 600;
+    private double allSize = 600;//五子棋大小600*600
     private boolean flag = true;//定义一个标记，若为true,则执黑子，否则执白子
-
+    private Pane pane = null;//定义画板对象
     int num = (int)(allSize/size)-1;//获取落子的数量
 
     Chess[] chesses = new Chess[19*19];//创建一个棋子对象用来存储已经落子的坐标
@@ -43,11 +45,25 @@ public class MyApplication extends Application {
     public void start(Stage primaryStage) throws Exception {
 
         //创建画板对象
-        Pane pane = new Pane();
+        pane = new Pane();
 
         //为画板设置颜色
         pane.setBackground(new Background(new BackgroundFill(Color.PINK,null,null)));
 
+        moveInChess(pane);
+
+        //创建场景对象,并且将画板放到场景上
+        Scene scene = new Scene(pane,600,650);
+
+        //将场景设置到舞台上
+        primaryStage.setScene(scene);
+
+        //展示舞台
+        primaryStage.show();
+
+    }
+
+    private void moveInChess(Pane pane) {
         //给画板绑定鼠标单击事件
         pane.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -103,22 +119,26 @@ public class MyApplication extends Application {
 
                 //判断是否胜利？
                 if(isWin1(chess)){
-                    System.out.println("您赢了");
+                    pop_up();
+                    return;
                 }
 
                 //判断是否胜利？
                 if(isWin2(chess)){
-                    System.out.println("您赢了");
+                    pop_up();
+                    return;
                 }
 
                 //判断是否胜利？
                 if(isWin3(chess)){
-                    System.out.println("您赢了");
+                    pop_up();
+                    return;
                 }
 
                 //判断是否胜利？
                 if(isWin4(chess)){
-                    System.out.println("您赢了");
+                    pop_up();
+                    return;
                 }
             }
         });
@@ -142,20 +162,32 @@ public class MyApplication extends Application {
                 //将线条对象放到画板上
                 pane.getChildren().add(line2);
             }
+
+            Button button = getStartButton();
+
+            pane.getChildren().add(button);
+
         }
-
-        //创建场景对象,并且将画板放到场景上
-        Scene scene = new Scene(pane,600,600);
-
-        //将场景设置到舞台上
-        primaryStage.setScene(scene);
-
-        //展示舞台
-        primaryStage.show();
-
     }
 
-    //判断是否获胜
+    /**
+     * 获取再来一局按钮对象
+     * @return
+     */
+    private Button getStartButton() {
+        //添加按钮对象
+        Button button = new Button("再来一局");
+        //设置按钮对象
+        button.setPrefSize(80,30);
+        //设置x和y坐标
+        button.setLayoutX(450);
+        button.setLayoutY(600);
+        return button;
+    }
+
+    /**
+     *     判断是否获胜
+     */
     private boolean isWin1(Chess chess) {
         //先获取当前落子的横纵坐标
         int x = chess.getX();
@@ -347,6 +379,17 @@ public class MyApplication extends Application {
             }
         }
         return false;
+    }
+
+    /**
+     * 获胜弹框
+     */
+    public static void pop_up(){
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("获胜");
+        alert.setHeaderText("恭喜您胜利了！");
+        alert.setContentText("撒花");
+        alert.showAndWait();//展示弹出框
     }
 
 

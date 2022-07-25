@@ -15,16 +15,17 @@ public class exer1 {
         boolean flag = true;
         Scanner scanner = new Scanner(System.in);
 
+        Writer writer = null;
+
         while(flag){
             System.out.println("请输入一个字符串：(输入886结束)");
             String next = scanner.next();//接收用户输入的字符串
 
-            if (next.equals("886")){
+            if ("886".equals(next)){
                 System.out.println("程序结束");
                 flag = false;
             }
 
-            Writer writer = null;
             try {
                 writer = new FileWriter("Info.txt",true);
                 writer.write(next + "\r\n");

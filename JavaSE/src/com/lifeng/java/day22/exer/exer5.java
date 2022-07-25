@@ -26,7 +26,8 @@ public class exer5 {
             String s = "";
             while ((s = br.readLine()) != null){
                 int results = results(s);
-                bw.write(String.valueOf(results) + "\n");
+                bw.write(s + "=" + results);
+
                 bw.flush();
             }
         }catch (Exception e){
