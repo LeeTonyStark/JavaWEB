@@ -18,6 +18,7 @@ public class exer9 {
         File file = new File("a.txt");
         BufferedReader br = new BufferedReader(new FileReader(file));//读取本地txt文件
         BufferedWriter os = null;
+//        String s1 = null;
         while (true){
             //3.创建管道流对象
             os = new BufferedWriter(new OutputStreamWriter(socket.getOutputStream(),"utf-8"));
@@ -27,8 +28,13 @@ public class exer9 {
                 break;
             }
             os.write(s);
+            os.newLine();
             os.flush();
         }
+
+//        socket.shutdownOutput();//告知对面我们这边数据传输结束了
+
+        br.close();
 
         byte[] bytes = new byte[1024];
         int read = is.read(bytes);

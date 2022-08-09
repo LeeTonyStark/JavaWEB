@@ -30,6 +30,8 @@ public class exer10 {
             break;
         }
 
+        br.close();
+
         //若已经接收到最后一个数据，给发送端做出一个反馈
         String s1 = "数据已经收到";
         OutputStream os = accept.getOutputStream();

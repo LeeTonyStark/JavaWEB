@@ -29,7 +29,7 @@ public class exer7 {
             os.flush();
         }
 
-        //5.关闭资源
+        //5.关闭资源`
         socket.close();
     }
 }
