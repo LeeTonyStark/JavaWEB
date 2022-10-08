@@ -1,0 +1,123 @@
+/* 头部 */
+.ccc{
+	/* 弹性盒子 */
+	display: flex;
+	/* 
+	弹性盒子的主轴
+		将里面的元素大小均摊给弹性盒子
+	 */
+	justify-content: space-between;
+}
+
+div p{
+	font-size: 20px;
+}
+
+.aaa{
+	width: 80px;
+	height: 70px;
+	text-align: center;
+	line-height: 70px;
+	color: #000000;
+}
+
+.aaa:hover{
+	border: 1px solid #b6b6b6;
+	border-radius: 20px;
+	color: green;
+}
+
+/* ------------------------------------------------------- */
+
+span{
+	font-size: 18px;
+}
+
+.span1{
+	font-family: '黑体';
+	font-size: 30px;
+	letter-spacing: 4px;
+	text-align: center;
+}
+
+.p1{
+	font-size: 26px;
+	text-align: center;
+	line-height: 0.5;
+	padding-top: 10px;
+}
+
+.p2{
+	font-size: 24px;
+	text-align: center;
+	line-height: 0.5;
+	padding-top: 10px;
+}
+
+.div1{
+	height: 50px;
+	padding-top: 10px;
+}
+
+.span2{
+	font-size: 22px;
+	width: 200px;
+	height: 25px;
+	padding-left: 30px;
+	color: yellowgreen;
+}
+
+.p3{
+	width: 200px;
+	height: 50px;
+	font-size: 20px;
+	padding-top: 20px;
+	text-align: center;	
+}
+
+.table1{
+	font-size: 20px;
+}
+
+
+/* 尾部 */
+
+#hind{
+	margin-top: 70px;
+	font-size: 30px;
+	text-align: center;
+	background-color: #5e5e5e;
+}
+
+#pid{
+	color: white;
+}
+
+#hind1{
+	width: 100%;
+	height: 300px;
+	background-color: #262626;
+}
+
+#hind1_1{
+	color: white;
+	font-size: 16px;
+	text-align: center;
+}
+
+#hind1_2{
+	margin-top: 45px;
+}
+
+#hind1_3{
+	margin-top: 25px;
+}
+
+#hind1_4{
+	margin-top: 25px;
+}
+
+#hind1_5{
+	margin-top: 25px;
+}
+/* -------------------------------------------------- */

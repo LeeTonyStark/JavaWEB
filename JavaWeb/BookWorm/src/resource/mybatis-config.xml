@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+<!--    加载数据源配置文件-->
+    <properties resource="db.properties"/>
+
+<!--  起别名  -->
+    <typeAliases>
+        <package name="com.pojo"/>
+    </typeAliases>
+
+    <!--  配置分页插件  -->
+    <plugins>
+        <plugin interceptor="com.github.pagehelper.PageInterceptor">
+            <property name="helperDialect" value="mysql"/>
+            <property name="reasonable" value="true"/>
+        </plugin>
+    </plugins>
+
+    <environments default="mysql">
+        <environment id="mysql">
+            <transactionManager type="JDBC"/>
+            <dataSource type="POOLED">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--   配置mapper   -->
+    <mappers>
+        <mapper resource="com/dao/goods/xml/GoodsMapper.xml"></mapper>
+        <mapper resource="com/dao/category/xml/CategoryMapper.xml"></mapper>
+        <mapper resource="com/dao/user/xml/UserMapper.xml"></mapper>
+        <mapper resource="com/dao/cart/xml/CartMapper.xml"></mapper>
+        <mapper resource="com/dao/address/xml/AddressMapper.xml"></mapper>
+        <mapper resource="com/dao/order/xml/OrderMapper.xml"></mapper>
+        <mapper resource="com/dao/pageHelper/xml/PageHelperMapper.xml"></mapper>
+        <mapper resource="com/dao/personal/xml/PersonalMapper.xml"></mapper>
+    </mappers>
+
+</configuration>

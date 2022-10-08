@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.goods.GoodsDao">
+    <select id="FindAllNewGoodsLimit" resultType="goods">
+        SELECT `id`,`name`,`author`,`description`,`marketprice`,`salesprice`,`score`,`image`
+        FROM mall_goods WHERE newest = '是'
+            LIMIT 0,4;
+    </select>
+
+    <select id="FindGoodListById" resultType="goods">
+        SELECT * FROM mall_goods
+        WHERE `categoryid` = #{cid}
+            LIMIT #{page},12
+    </select>
+
+    <select id="selectCountGoods" resultType="int" parameterType="int">
+        select count(*) from mall_goods where `categoryid` = #{cid}
+    </select>
+
+    <select id="findAllGoodsById" resultType="goods" parameterType="string">
+        select * from mall_goods where id = #{id}
+    </select>
+
+    <select id="FindAllHotGoodsLimit" resultType="goods">
+        SELECT `id`,`name`,`author`,`description`,`marketprice`,`salesprice`,`score`,`image`
+        FROM mall_goods WHERE hot = '是'
+            LIMIT 0,4;
+    </select>
+</mapper>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.order.OrderDao">
+    <insert id="addOrder" parameterType="order">
+        insert into mall_order values(null,#{orderno},#{userid},#{ordertime},#{accept},#{telphone},#{address},#{money},#{paytype},#{status})
+    </insert>
+
+    <update id="updateOrder" parameterType="order">
+        UPDATE mall_order SET `status` = 1 WHERE orderno = #{orderno}
+    </update>
+</mapper>

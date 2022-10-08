@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.cart.CartDao">
+    <select id="selectGoodsAndUser" resultType="boolean">
+        select * from mall_cart where userid = #{userid} and goodsid = #{goodsid}
+    </select>
+
+    <insert id="addCart" parameterType="cart">
+        insert into mall_cart values (null ,#{userid},#{goodsid},#{price},#{nums})
+    </insert>
+
+    <select id="selectCartByUserid" resultType="cart" parameterType="string">
+        select * from mall_cart where userid = #{userid} and goodsid = #{goodsid}
+    </select>
+
+    <update id="updateCart">
+        update mall_cart set price = #{newPrice},nums = #{newNums} where userid = #{userid} and goodsid = #{goodsid}
+    </update>
+
+    <select id="selectCartsByUserid" parameterType="int" resultType="cart">
+        select * from mall_cart where userid = #{userid}
+    </select>
+
+    <resultMap type="cart" id="cartGoodsMap">
+        <id column="id" property="id" />
+        <result  column="userid" property="userid"/>
+        <result column="price" property="price"/>
+        <result column="nums" property="nums"/>
+
+        <association property="goods" column="goodsid" javaType="goods">
+            <result column="name" property="name"/>
+            <result column="image" property="image"/>
+            <result column="salesprice" property="salesprice" />
+        </association>
+    </resultMap>
+    <select id="selectGoodsByid" parameterType="int" resultMap="cartGoodsMap">
+       select c.id,c.userid,c.goodsid,c.price,c.nums,g.name,g.image,g.salesprice from mall_cart c,mall_goods g where c.goodsid = g.id and c.userid = #{userid}
+    </select>
+</mapper>

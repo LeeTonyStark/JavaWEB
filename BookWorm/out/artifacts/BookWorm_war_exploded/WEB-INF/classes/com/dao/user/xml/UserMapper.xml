@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.user.UserDao">
+    <select id="FindUserByUsername" resultType="user" parameterType="string">
+        select * from mall_user where username = #{username}
+    </select>
+
+    <insert id="addUser" parameterType="user">
+        INSERT INTO mall_user VALUES(null ,#{username},#{password},#{email},#{image},#{status},#{code})
+    </insert>
+
+    <select id="findByCode" resultType="string" parameterType="string">
+        SELECT `code` FROM mall_user WHERE `code` = #{code}
+    </select>
+
+    <select id="updateByCode" parameterType="string">
+        UPDATE mall_user SET `status` = '1' WHERE `code` = #{code}
+    </select>
+
+    <select id="Login" resultType="user" parameterType="string">
+        select * from mall_user where username = #{username} and password = #{password} and status = '1';
+    </select>
+</mapper>

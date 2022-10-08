@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.dao.address.AddressDao">
+    <insert id="addAddress" parameterType="address">
+        insert into mall_address values (null ,#{userid},#{accept},#{telphone},#{province},#{city},#{area},#{address},#{type})
+    </insert>
+
+    <select id="findAllAddress" resultType="address" parameterType="int">
+        select * from mall_address where userid = #{userid}
+    </select>
+
+    <select id="findTypeAddress" parameterType="int" resultType="address">
+        select * from mall_address where userid = #{userid} and type='y'
+    </select>
+</mapper>
